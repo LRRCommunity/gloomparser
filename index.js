@@ -11,5 +11,14 @@ function readFromFile(filename) {
 }
 
 function readFromStateFile() {
-	return readFromFile(process.env.USERPROFILE + "/.ghh/state");
+	let userProfileDir = process.env.HOME || process.env.USERPROFILE;
+	
+	return readFromFile(userProfileDir + "/.ghh/state");
 }
+
+module.exports = {
+	Reader,
+	Parser: parser,
+	readFromFile,
+	readFromStateFile,
+};
