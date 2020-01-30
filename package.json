@@ -1,0 +1,31 @@
+{
+  "name": "gloomparser",
+  "version": "0.1.0",
+  "description": "Parsing Gloomhaven Helper's state file for external tracking",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LRRCommunity/gloomparser.git"
+  },
+  "keywords": [
+    "gloomhaven",
+    "parser",
+    "gloomhaven",
+    "helper"
+  ],
+  "author": "offbeatwitch <obw@generalprogramming.org> (https://offbeatwit.ch)",
+  "contributors": [
+    "rf232"
+  ],
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/LRRCommunity/gloomparser/issues"
+  },
+  "homepage": "https://github.com/LRRCommunity/gloomparser#readme"
+}
