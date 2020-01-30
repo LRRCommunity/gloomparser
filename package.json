@@ -14,14 +14,15 @@
     "url": "git+https://github.com/LRRCommunity/gloomparser.git"
   },
   "keywords": [
+    "games",
     "gloomhaven",
-    "parser",
-    "gloomhaven",
-    "helper"
+    "helper",
+    "parser"
   ],
   "author": "offbeatwitch <obw@generalprogramming.org> (https://offbeatwit.ch)",
   "contributors": [
-    "rf232"
+    "rf232",
+    "DarkMorford <DarkMorford@users.noreply.github.com>"
   ],
   "license": "MPL-2.0",
   "bugs": {
