@@ -1,3 +1,5 @@
+"use strict";
+
 const Reader = require("../lib/reader").Reader;
 
 const bufferPrefix = Buffer.alloc(4, 0x00);
