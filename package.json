@@ -28,12 +28,19 @@
   ],
   "license": "UNLICENSED",
   "private": true,
+  "engines": {
+    "node": ">=8.11.1 <13.0"
+  },
   "bugs": {
     "url": "https://github.com/LRRCommunity/gloomparser/issues"
   },
   "homepage": "https://github.com/LRRCommunity/gloomparser#readme",
+  "dependencies": {},
   "devDependencies": {
-    "jest": "^25.1.0"
+    "bufferutil": "^4.0.1",
+    "canvas": "^2.5.0",
+    "jest": "^25.1.0",
+    "utf-8-validate": "^5.0.2"
   },
   "jest": {
     "testEnvironment": "node"
