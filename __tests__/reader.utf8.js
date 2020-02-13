@@ -1,0 +1,58 @@
+"use strict";
+
+const Reader = require("../lib/reader").Reader;
+
+const bufferPrefix = Buffer.alloc(4, 0x00);
+
+test('utf8: read single character', () => {
+	let data = Buffer.from([
+		0xC2, 0xA9, 0xF0, 0x9D, 0x8C,
+		0x86, 0xE2, 0x98, 0x83, 0x78
+	]);
+	let r = new Reader(Buffer.concat([bufferPrefix, data]));
+
+	expect(r._readUtf8Character()).toEqual("©");
+	expect(r._readUtf8Character()).toEqual("𝌆");
+	expect(r._readUtf8Character()).toEqual("☃");
+	expect(r._readUtf8Character()).toEqual("x");
+});
+
+test('utf8: read character count', () => {
+	let data = Buffer.from([
+		0xA0, 0xEE, 0x02, 0xFD, 0x02, 0xB1
+	]);
+	let r = new Reader(Buffer.concat([bufferPrefix, data]));
+
+	expect(r._readUtf8Length()).toBe(32);
+	expect(r._readUtf8Length()).toBe(174);
+	expect(r._readUtf8Length()).toBe(189);
+	expect(r._readUtf8Length()).toBe(49);
+});
+
+test('utf8: direct call to readUtf8String()', () => {
+	let data = Buffer.from([
+		0xA0, 0x50, 0x6F, 0x6B, 0xC3, 0xA9, 0x6D, 0x6F, 0x6E, 0xC2,
+		0xAE, 0x3A, 0x20, 0x47, 0x6F, 0x74, 0x74, 0x61, 0x20, 0x63,
+		0x61, 0x74, 0x63, 0x68, 0x20, 0x27, 0x65, 0x6D, 0x20, 0x61,
+		0x6C, 0x6C, 0x21, 0xE2, 0x84, 0xA2
+	]);
+	let r = new Reader(Buffer.concat([bufferPrefix, data]));
+
+	let s = r.readUtf8String();
+	expect(s.length).toBe(31);
+	expect(s).toEqual("Pokémon®: Gotta catch 'em all!™");
+});
+
+test('utf8: indirect call through readString()', () => {
+	let data = Buffer.from([
+		0x8D, 0xE3, 0x80, 0x8C, 0xE3, 0x81, 0x8B, 0xE3, 0x81,
+		0x90, 0xE3, 0x82, 0x84, 0xE6, 0xA7, 0x98, 0xE3, 0x81,
+		0xAF, 0xE5, 0x91, 0x8A, 0xE3, 0x82, 0x89, 0xE3, 0x81,
+		0x9B, 0xE3, 0x81, 0x9F, 0xE3, 0x81, 0x84, 0xE3, 0x80, 0x8D
+	]);
+	let r = new Reader(data, 0);
+
+	let s = r.readString();
+	expect(s.length).toBe(12);
+	expect(s).toEqual("「かぐや様は告らせたい」");
+});

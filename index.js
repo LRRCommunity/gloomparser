@@ -12,7 +12,7 @@ function readFromFile(filename) {
 
 function readFromStateFile() {
 	let userProfileDir = process.env.HOME || process.env.USERPROFILE;
-	
+
 	return readFromFile(userProfileDir + "/.ghh/state");
 }
 
